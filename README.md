@@ -167,12 +167,12 @@ public class MyParentPropertyBinder : PropertyBinder
 
 ## Nullable 타입을 등록하고 싶어요!
 
-우선, NullableTypeRegister.isNullable 딜리게이트에 원하는 타입이 Nullable이라고 인식할 수 있게 등록해주셔야해요!\
-``NullableTypeRegister.isNullable += x => Nullable.GetUnderlyingType(x) != null;``\
+우선, NullableType.isNullable 딜리게이트에 원하는 타입이 Nullable이라고 인식할 수 있게 등록해주셔야해요!\
+``NullableType.isNullable += x => Nullable.GetUnderlyingType(x) != null;``\
 이런식으로 반환값이 true이면 해당하는 타입은 Nullable 처럼 취급해요!
 
-그리고, Nullable의 기본 타입을 알 수 있게 NullableTypeRegister.getNullableUnderlyingType 또한 등록해주셔야해요!\
-``NullableTypeRegister.getNullableUnderlyingType += static x => Nullable.GetUnderlyingType(x);``\
+그리고, Nullable의 기본 타입을 알 수 있게 NullableType.getNullableUnderlyingType 또한 등록해주셔야해요!\
+``NullableType.getNullableUnderlyingType += static x => Nullable.GetUnderlyingType(x);``\
 이런식으로 매개변수로 들어온 타입의 기본 타입이 있으면 그 타입을 반환해주시면 되고, Nullable 타입이 아니라서 **기본 타입을 찾을 수 없다면 꼭 null을 반환**해주세요!
 
 또한 주의하실점이 있어요!\
