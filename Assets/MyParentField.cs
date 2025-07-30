@@ -26,8 +26,20 @@ public class MyParentField : BaseField<MyParent>
         visualInput.Add(textField);
         visualInput.Add(floatField);
         
-        textField.RegisterValueChangedCallback(x => value = new MyParent { name = x.newValue, value = value.value } );
-        floatField.RegisterValueChangedCallback(x => value = new MyParent { name = value.name, value = x.newValue } );
+        textField.RegisterValueChangedCallback(x =>
+        {
+            if (value != null)
+                value.name = x.newValue;
+            else
+                value = new MyChild { name = x.newValue };
+        });
+        floatField.RegisterValueChangedCallback(x =>
+        {
+            if (value != null)
+                value.value = x.newValue;
+            else
+                value = new MyChild { value = x.newValue };
+        });
     }
     
     public override void SetValueWithoutNotify(MyParent newValue)

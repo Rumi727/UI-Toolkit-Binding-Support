@@ -2,6 +2,7 @@
 using System;
 using System.Collections.Generic;
 using System.Diagnostics.CodeAnalysis;
+using System.Linq;
 
 namespace Rumi.CustomBinding.Editor
 {
@@ -17,6 +18,14 @@ namespace Rumi.CustomBinding.Editor
 
         public static object GetDefaultValueNotNull(this Type type)
         {
+            var delegates = NullableType.getNullableUnderlyingType.GetInvocationList().OfType<Func<Type, Type?>>();
+            foreach (var getNullableType in delegates)
+            {
+                Type? nullableType = getNullableType.Invoke(type);
+                if (nullableType != null)
+                    return nullableType.GetDefaultValueNotNull();
+            }
+
             if (type == typeof(string))
                 return string.Empty;
 

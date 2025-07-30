@@ -159,6 +159,22 @@ namespace Rumi.CustomBinding.Editor.Patches
                                         Debug.LogWarning($"No suitable PropertyBinder found for property type {propertyType}. Property: {prop.propertyPath}");
                                         return false;
                                     }
+                                    
+                                    // propertyType이 Nullable인지 확인합니다
+                                    bool isNullable = NullableType.isNullable.GetInvocationList()
+                                        .OfType<Func<Type, bool>>()
+                                        .Any(item => item.Invoke(propertyType));
+
+                                    Type? nullableUnderlyingType = NullableType.getNullableUnderlyingType.GetInvocationList()
+                                        .OfType<Func<Type, Type?>>()
+                                        .Select(x => x.Invoke(propertyType))
+                                        .FirstOrDefault(static x => x != null);
+
+                                    if ((nullableUnderlyingType == null && !propertyType.HasDefaultConstructor()) || (nullableUnderlyingType != null && !nullableUnderlyingType.HasDefaultConstructor()))
+                                    {
+                                        Debug.LogWarning($"Property '{prop.propertyPath}' of type '{propertyType}' cannot be bound because it requires a default public constructor but doesn't have one, or it's a nullable type whose underlying type lacks a default public constructor.");
+                                        return false;
+                                    }
 
                                     // Read 델리게이트 (Func<SerializedProperty, TValue>)를 동적으로 생성합니다.
                                     Delegate readFunc;
@@ -166,7 +182,7 @@ namespace Rumi.CustomBinding.Editor.Patches
                                     Type readFuncType = typeof(Func<,>).MakeGenericType(typeof(SerializedProperty), propertyType);
                                     {
                                         // Read 작업을 수행할 내부 로컬 함수를 정의합니다.
-                                        // 이 함수는 'binder', 'element', 'propertyType'을 클로저로 캡처합니다.
+                                        // 이 함수는 'binder', 'element', 'propertyType', 'isNullable'을 클로저로 캡처합니다.
                                         object? InternalReadFunc(SerializedProperty property)
                                         {
                                             try
@@ -180,7 +196,7 @@ namespace Rumi.CustomBinding.Editor.Patches
                                                 if (value == null)
                                                 {
                                                     // propertyType이 참조 타입, 인터페이스, 또는 Nullable<T>인 경우 null을 허용합니다.
-                                                    if (NullableTypeRegister.isNullable?.Invoke(propertyType) ?? false)
+                                                    if (isNullable)
                                                         return null;
 
                                                     // non-nullable 값 타입인데 null이 반환된 경우 경고를 로깅하고 기본값을 반환합니다.
@@ -197,7 +213,7 @@ namespace Rumi.CustomBinding.Editor.Patches
                                                 }
 
                                                 // 타입 불일치 시 타입의 기본값을 반환합니다.
-                                                return propertyType.GetDefaultValue();
+                                                return propertyType.GetDefaultValueNotNull();
                                             }
                                             catch (Exception e) // 바인더 내부에서 예외가 발생한 경우 처리
                                             {

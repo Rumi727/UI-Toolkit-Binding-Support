@@ -3,7 +3,7 @@
 using UnityEditor.UIElements;
 using UnityEngine.UIElements;
 
-public class MyChildField : BaseField<MyChild>
+public class MyChildField : BaseField<MyChild?>
 {
     public readonly VisualElement visualInput;
     
@@ -28,18 +28,36 @@ public class MyChildField : BaseField<MyChild>
         visualInput.Add(floatField);
         visualInput.Add(objectField);
         
-        textField.RegisterValueChangedCallback(x => value.name = x.newValue );
-        floatField.RegisterValueChangedCallback(x => value.value = x.newValue );
-        objectField.RegisterValueChangedCallback(x => value.uniObject = x.newValue );
+        textField.RegisterValueChangedCallback(x =>
+        {
+            if (value != null)
+                value.name = x.newValue;
+            else
+                value = new MyChild { name = x.newValue };
+        });
+        floatField.RegisterValueChangedCallback(x =>
+        {
+            if (value != null)
+                value.value = x.newValue;
+            else
+                value = new MyChild { value = x.newValue };
+        });
+        objectField.RegisterValueChangedCallback(x =>
+        {
+            if (value != null)
+                value.uniObject = x.newValue;
+            else
+                value = new MyChild { uniObject = x.newValue };
+        });
     }
     
-    public override void SetValueWithoutNotify(MyChild newValue)
+    public override void SetValueWithoutNotify(MyChild? newValue)
     {
         base.SetValueWithoutNotify(newValue);
         
-        textField.SetValueWithoutNotify(newValue.name);
-        floatField.SetValueWithoutNotify(newValue.value);
-        objectField.SetValueWithoutNotify(newValue.uniObject);
+        textField.SetValueWithoutNotify(newValue?.name);
+        floatField.SetValueWithoutNotify(newValue?.value ?? 0);
+        objectField.SetValueWithoutNotify(newValue?.uniObject);
     }
 }
 #endif

@@ -4,6 +4,6 @@ using System;
 [Serializable]
 public struct MyStruct
 {
-    public string name;
+    public string? name;
     public float value;
 }
