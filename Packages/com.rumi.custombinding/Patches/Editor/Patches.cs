@@ -6,7 +6,7 @@ namespace Rumi.CustomBinding.Editor.Patches
 {
     public static partial class Patches
     {
-        public static readonly Harmony harmony = new Harmony("Rumi.RuniOS.Editor");
+        public static readonly Harmony harmony = new Harmony("Rumi.CustomBinding");
 
         [InitializeOnLoadMethod]
         static void Awaken()
