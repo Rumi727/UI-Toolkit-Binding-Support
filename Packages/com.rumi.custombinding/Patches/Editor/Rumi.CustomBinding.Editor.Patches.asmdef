@@ -1,0 +1,20 @@
+{
+    "name": "Rumi.CustomBinding.Editor.Patches",
+    "rootNamespace": "Rumi.CustomBinding.Editor.Patches",
+    "references": [
+        "GUID:cbe4dce90495bc04ea430f81ccb78b33"
+    ],
+    "includePlatforms": [
+        "Editor"
+    ],
+    "excludePlatforms": [],
+    "allowUnsafeCode": false,
+    "overrideReferences": true,
+    "precompiledReferences": [
+        "0Harmony.dll"
+    ],
+    "autoReferenced": false,
+    "defineConstraints": [],
+    "versionDefines": [],
+    "noEngineReferences": false
+}
