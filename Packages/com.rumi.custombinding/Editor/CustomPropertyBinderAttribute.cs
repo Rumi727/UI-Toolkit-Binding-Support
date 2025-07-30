@@ -1,7 +1,7 @@
 ﻿#nullable enable
 using System;
 
-namespace Rumi.CustomBinding.Editor.UIElements.Bindings
+namespace Rumi.CustomBinding.Editor
 {
     /// <summary>
     /// Specifies that a class is a custom property binder for a specific type.

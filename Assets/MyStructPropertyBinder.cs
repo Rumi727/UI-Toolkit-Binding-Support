@@ -1,5 +1,5 @@
 #nullable enable
-using Rumi.CustomBinding.Editor.UIElements.Bindings;
+using Rumi.CustomBinding.Editor;
 using System;
 using UnityEditor;
 using UnityEngine.UIElements;

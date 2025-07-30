@@ -4,7 +4,7 @@ using System;
 using UnityEditor;
 using UnityEngine.UIElements;
 
-namespace Rumi.CustomBinding.Editor.UIElements.Bindings
+namespace Rumi.CustomBinding.Editor.Bindings
 {
     /// <summary>
     /// A concrete implementation of <see cref="PropertyBinder"/> that handles properties of type <see cref="object"/>.

@@ -6,7 +6,7 @@ using System.Reflection;
 using UnityEditor;
 using UnityEngine.UIElements;
 
-namespace Rumi.CustomBinding.Editor.UIElements.Bindings
+namespace Rumi.CustomBinding.Editor
 {
     /// <summary>
     /// Provides an abstract base class for binding <see cref="SerializedProperty">SerializedProperties</see> to <see cref="VisualElement">VisualElements</see>.
