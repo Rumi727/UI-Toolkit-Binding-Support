@@ -164,12 +164,12 @@ Oh! To be a bindable type, like `MyStruct` or `MyParent`, it must have a public 
 
 ## I want to register Nullable types!
 
-First, you need to register your desired type as Nullable by assigning a delegate to `NullableTypeRegister.isNullable`!\
-For example, ``NullableTypeRegister.isNullable += x => Nullable.GetUnderlyingType(x) != null;``\
+First, you need to register your desired type as Nullable by assigning a delegate to `NullableType.isNullable`!\
+For example, ``NullableType.isNullable += x => Nullable.GetUnderlyingType(x) != null;``\
 will treat the corresponding type as Nullable if the return value is true!
 
-And, to be able to determine the underlying type of a Nullable, you must also register `NullableTypeRegister.getNullableUnderlyingType`!\
-For example, ``NullableTypeRegister.getNullableUnderlyingType += static x => Nullable.GetUnderlyingType(x);``\
+And, to be able to determine the underlying type of a Nullable, you must also register `NullableType.getNullableUnderlyingType`!\
+For example, ``NullableType.getNullableUnderlyingType += static x => Nullable.GetUnderlyingType(x);``\
 will return the underlying type of the given type if it exists, and **must return null if it's not a Nullable type** and no underlying type can be found!
 
 Also, there's a point to be aware of!\
