@@ -15,6 +15,9 @@ Languages available in README: \[[**한국어 (대한민국)**](README.md)\] \[[
 당연히? 어떻게 바인딩 될 것인지, 원하는 타입을 null로 할당할 수 있게끔 설정하는것 또한 전부 커스텀 가능합니다.\
 특정 타입이 null로 할당 가능으로 인식하게끔 설정하는 기능이 있는 이유가, Serializable Nullable 같이, null을 직렬화할 수 있게 한 라이브러리 또한 정상적으로 작동할 수 있게 하기 위함입니다.
 
+깃으로 설치하시면 됩니다!
+URL : ``https://github.com/Rumi727/UI-Toolkit-Binding-Support.git?path=Packages/com.rumi.custombinding``
+
 ## 참고 사항
 
 [HarmonyX](https://github.com/BepInEx/HarmonyX) 라이브러리로 런타임에서 유니티 코드에 바인더 코드를 집어넣는다는 것을 기억해주세요!\
