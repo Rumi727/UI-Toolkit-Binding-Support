@@ -178,13 +178,3 @@ public class MyParentPropertyBinder : PropertyBinder
 또한 주의하실점이 있어요!\
 Nullable로 표시된 타입은 꼭꼭 기본 타입으로 암시적 형변환할 수 있어야합니다\
 안그러면 캐스팅 예외나요!!
-
-## 유용한 유틸리티들!
-
-* ``public static T PropertyFieldUtility.SetPropertyPath(this T element, SerializedProperty property)``
-  * ```
-    element.bindingPath = property.propertyPath;
-    return element;
-    ```
-    요거 함수로 만든거
-* ``public static BaseField<T> PropertyFieldUtility.ConfigureFieldStyles<T>(this BaseField<T> field)`` 라벨 정렬과 프로퍼티 필드로 표시하는 USS를 추가하고 자기 자신을 반환
