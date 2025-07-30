@@ -175,13 +175,3 @@ will return the underlying type of the given type if it exists, and **must retur
 Also, there's a point to be aware of!\
 Types marked as Nullable must absolutely be implicitly convertible to their underlying type!\
 Otherwise, you'll get a casting exception!!
-
-## Useful Utilities!
-
-* ``public static T PropertyFieldUtility.SetPropertyPath<T>(this T element, SerializedProperty property)``
- * ```
-    element.bindingPath = property.propertyPath;
-    return element;
-    ```
-    This is that function made into a utility.
-* ``public static BaseField<T> PropertyFieldUtility.ConfigureFieldStyles<T>(this BaseField<T> field)`` Adds USS for label alignment and displaying as a property field, then returns itself.
