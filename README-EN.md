@@ -1,6 +1,6 @@
 # UI Toolkit Binding Support
 
-Languages available in README: \[[Korean (Korea)](README.md)\] \[[**English (US)**](README-EN.md)\]
+Languages available in README: \[[한국어 (대한민국)](README.md)\] \[[**English (US)**](README-EN.md)\]
 
 ## Introduction
 
@@ -12,6 +12,9 @@ This package helps the Unity binding system recognize custom classes by patching
 
 Naturally, you can completely customize how types will be bound and whether specific types can be assigned as null.\
 The reason for allowing specific types to be recognized as nullable is to ensure that libraries like Serializable Nullable, which enable serializing null values, can also function correctly.
+
+You can install it with Git!\
+URL : ``https://github.com/Rumi727/UI-Toolkit-Binding-Support.git?path=Packages/com.rumi.custombinding``
 
 ## Notes
 
