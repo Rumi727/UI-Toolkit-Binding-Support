@@ -23,11 +23,6 @@ namespace Rumi.CustomBinding.Editor
             return Activator.CreateInstance(type);
         }
 
-        /// <summary>type != typeof(T) &amp;&amp; typeof(T).IsAssignableFrom(type)</summary>
-        public static bool IsSubtypeOf<T>(this Type type) => type != typeof(T) && typeof(T).IsAssignableFrom(type);
-        /// <summary>type != surclass &amp;&amp; surclass.IsAssignableFrom(type)</summary>
-        public static bool IsSubtypeOf(this Type type, Type surclass) => type != surclass && surclass.IsAssignableFrom(type);
-
         /// <summary>
         /// 주어진 <paramref name="givenType"/>이 특정 제네릭 타입 정의(<paramref name="genericTypeDefinition"/>)를
         /// 구현하거나 상속하는지 확인합니다.
