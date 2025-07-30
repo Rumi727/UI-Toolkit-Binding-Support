@@ -9,8 +9,7 @@ public class MyParentPropertyDrawer : PropertyDrawer
 {
     public override VisualElement CreatePropertyGUI(SerializedProperty property)
     {
-        MyParentField MyParentField = new MyParentField(property.displayName).SetPropertyPath(property);
-        MyParentField.ConfigureFieldStyles();
+        MyParentField MyParentField = new MyParentField(property.displayName).SetProperty<MyParentField, MyParent?>(property);
         
         property.Next(true);
         MyParentField.textField.bindingPath = property.propertyPath;

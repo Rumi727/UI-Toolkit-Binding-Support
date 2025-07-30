@@ -5,7 +5,7 @@ using UnityEditor.UIElements;
 #endif
 using UnityEngine.UIElements;
 
-public class MyParentField : BaseField<MyParent>
+public class MyParentField : BaseField<MyParent?>
 {
     public readonly VisualElement visualInput;
     
@@ -42,12 +42,12 @@ public class MyParentField : BaseField<MyParent>
         });
     }
     
-    public override void SetValueWithoutNotify(MyParent newValue)
+    public override void SetValueWithoutNotify(MyParent? newValue)
     {
         base.SetValueWithoutNotify(newValue);
         
-        textField.SetValueWithoutNotify(newValue.name);
-        floatField.SetValueWithoutNotify(newValue.value);
+        textField.SetValueWithoutNotify(newValue?.name);
+        floatField.SetValueWithoutNotify(newValue?.value ?? 0);
     }
 }
 #endif

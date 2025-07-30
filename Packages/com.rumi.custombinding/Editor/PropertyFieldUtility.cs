@@ -18,12 +18,15 @@ namespace Rumi.CustomBinding.Editor
         /// <br/>
         /// <see cref="BindableElement"/>의 바인딩 경로를 <see cref="SerializedProperty"/>의 경로로 설정합니다.
         /// </summary>
-        /// <typeparam name="T">
-        /// The type of the bindable element. Must inherit from <see cref="BindableElement"/>.
+        /// <typeparam name="TField">
+        /// The type of the field.
         /// <br/>
-        /// 바인딩 가능한 요소의 타입입니다. <see cref="BindableElement"/>를 상속해야 합니다.
-        /// </typeparam>
-        /// <param name="element">
+        /// 필드의 타입입니다.</typeparam>
+        /// <typeparam name="TValue">
+        /// The value type of the field.
+        /// <br/>
+        /// 필드의 값 타입입니다.</typeparam>
+        /// <param name="field">
         /// The bindable element to set the path for.
         /// <br/>
         /// 경로를 설정할 바인딩 가능한 요소입니다.
@@ -36,10 +39,12 @@ namespace Rumi.CustomBinding.Editor
         /// The modified bindable element.<br/>
         /// 수정된 바인딩 가능한 요소입니다.
         /// </returns>
-        public static T SetPropertyPath<T>(this T element, SerializedProperty property) where T : BindableElement
+        public static TField SetProperty<TField, TValue>(this TField field, SerializedProperty property) where TField : BaseField<TValue>
         {
-            element.bindingPath = property.propertyPath;
-            return element;
+            field.label = property.displayName;
+            field.bindingPath = property.propertyPath;
+
+            return field.ConfigureFieldStyles<TField, TValue>();
         }
 
         /// <summary>
@@ -47,7 +52,11 @@ namespace Rumi.CustomBinding.Editor
         /// <br/>
         /// <see cref="BaseField{TValueType}"/>에 정렬을 적용하기 위한 USS(Unity Style Sheets) 스타일을 구성합니다.
         /// </summary>
-        /// <typeparam name="T">
+        /// <typeparam name="TField">
+        /// The type of the field.
+        /// <br/>
+        /// 필드의 타입입니다.</typeparam>
+        /// <typeparam name="TValue">
         /// The value type of the field.
         /// <br/>
         /// 필드의 값 타입입니다.</typeparam>
@@ -57,15 +66,15 @@ namespace Rumi.CustomBinding.Editor
         /// <returns>The configured field.
         /// <br/>
         /// 구성된 필드입니다.</returns>
-        public static BaseField<T> ConfigureFieldStyles<T>(this BaseField<T> field)
+        public static TField ConfigureFieldStyles<TField, TValue>(this TField field) where TField : BaseField<TValue>
         {
             field.labelElement.AddToClassList(PropertyField.labelUssClassName);
-            field.AddToClassList(BaseField<T>.alignedFieldUssClassName);
+            field.AddToClassList(BaseField<TValue>.alignedFieldUssClassName);
             
-            VisualElement? visualInput = field.Q<VisualElement>(BaseField<T>.inputUssClassName);
+            VisualElement? visualInput = field.Q<VisualElement>(BaseField<TValue>.inputUssClassName);
             visualInput?.AddToClassList(PropertyField.inputUssClassName);
-            visualInput?.Query<VisualElement>(null, BaseField<T>.ussClassName, BaseCompositeField<int, IntegerField, int>.ussClassName)
-                .ForEach(static x => x.AddToClassList(BaseField<T>.alignedFieldUssClassName));
+            visualInput?.Query<VisualElement>(null, BaseField<TValue>.ussClassName, BaseCompositeField<int, IntegerField, int>.ussClassName)
+                .ForEach(static x => x.AddToClassList(BaseField<TValue>.alignedFieldUssClassName));
 
             return field;
         }

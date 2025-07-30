@@ -9,8 +9,7 @@ public class MyStructPropertyDrawer : PropertyDrawer
 {
     public override VisualElement CreatePropertyGUI(SerializedProperty property)
     {
-        MyStructField myStructField = new MyStructField(property.displayName).SetPropertyPath(property);
-        myStructField.ConfigureFieldStyles();
+        MyStructField myStructField = new MyStructField(property.displayName).SetProperty<MyStructField, MyStruct>(property);
         
         property.Next(true);
         myStructField.textField.bindingPath = property.propertyPath;
