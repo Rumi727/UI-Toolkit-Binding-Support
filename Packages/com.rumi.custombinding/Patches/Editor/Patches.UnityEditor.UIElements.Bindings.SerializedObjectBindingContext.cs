@@ -1,4 +1,5 @@
 ﻿#nullable enable
+#if !RUNI_ENGINE
 using HarmonyLib;
 using System;
 using System.Linq.Expressions;
@@ -394,3 +395,4 @@ namespace Rumi.CustomBinding.Editor.Patches
         }
     }
 }
+#endif

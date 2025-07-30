@@ -1,4 +1,5 @@
 #nullable enable
+#if !RUNI_ENGINE
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -45,3 +46,4 @@ namespace Rumi.CustomBinding.Editor
         }
     }
 }
+#endif

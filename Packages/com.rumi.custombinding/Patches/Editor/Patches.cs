@@ -1,4 +1,5 @@
 #nullable enable
+#if !RUNI_ENGINE
 using HarmonyLib;
 using UnityEditor;
 
@@ -16,3 +17,4 @@ namespace Rumi.CustomBinding.Editor.Patches
         }
     }
 }
+#endif

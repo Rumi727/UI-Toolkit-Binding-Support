@@ -1,4 +1,5 @@
 ﻿#nullable enable
+#if !RUNI_ENGINE
 #if UNITY_2022_1_OR_NEWER
 using System;
 using UnityEditor;
@@ -37,4 +38,5 @@ namespace Rumi.CustomBinding.Editor.Bindings
         public override void Write(VisualElement element, SerializedProperty property, Type propertyType, object? value) => property.boxedValue = value;
     }
 }
+#endif
 #endif

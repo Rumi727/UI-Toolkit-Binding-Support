@@ -1,4 +1,5 @@
 #nullable enable
+#if !RUNI_ENGINE
 using System;
 
 namespace Rumi.CustomBinding.Editor
@@ -47,3 +48,4 @@ namespace Rumi.CustomBinding.Editor
         }
     }
 }
+#endif

@@ -1,6 +1,6 @@
 #nullable enable
 #if UNITY_EDITOR
-using Rumi.CustomBinding.Editor.UIElements;
+using Rumi.CustomBinding.Editor;
 using UnityEditor;
 using UnityEngine.UIElements;
 

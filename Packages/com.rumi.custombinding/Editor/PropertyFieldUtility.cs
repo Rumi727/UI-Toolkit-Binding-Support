@@ -1,9 +1,10 @@
 ﻿#nullable enable
+#if !RUNI_ENGINE
 using UnityEditor;
 using UnityEditor.UIElements;
 using UnityEngine.UIElements;
 
-namespace Rumi.CustomBinding.Editor.UIElements
+namespace Rumi.CustomBinding.Editor
 {
     /// <summary>
     /// Provides utility methods for PropertyField related operations.
@@ -70,3 +71,4 @@ namespace Rumi.CustomBinding.Editor.UIElements
         }
     }
 }
+#endif

@@ -1,4 +1,5 @@
 ﻿#nullable enable
+#if !RUNI_ENGINE
 using System;
 using System.Linq;
 using System.Reflection;
@@ -32,3 +33,4 @@ namespace Rumi.CustomBinding.Editor.Patches
         }
     }
 }
+#endif

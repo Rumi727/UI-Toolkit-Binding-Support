@@ -1,4 +1,5 @@
 ﻿#nullable enable
+#if !RUNI_ENGINE
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -88,3 +89,4 @@ namespace Rumi.CustomBinding.Editor
         public virtual bool Comparer(VisualElement element, SerializedProperty property, Type propertyType, object? current, object? valueToCompare) => Equals(current, valueToCompare);
     }
 }
+#endif
