@@ -39,9 +39,18 @@ namespace Rumi.CustomBinding.Editor
             .Select(static x => (x, x.GetCustomAttribute<CustomPropertyBinderAttribute>()))
             .OrderByDescending
             (
-                static x => x.Item2.targetType
-                    .GetHierarchy()
-                    .Count()
+                static x =>
+                {
+                    if (x.Item2.priority == 0)
+                    {
+                        if (x.Item2.targetType.IsInterface)
+                            return 0;
+                    
+                        return x.Item2.targetType.GetHierarchy().Count() * 100;
+                    }
+                    else
+                        return x.Item2.priority;
+                }
             ).ToArray()
         );
         

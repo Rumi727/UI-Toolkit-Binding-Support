@@ -46,6 +46,15 @@ namespace Rumi.CustomBinding.Editor
         /// <br/>이 바인더가 <see cref="targetType"/>의 서브타입과 호환되는지 여부를 나타내는 값을 가져옵니다.
         /// </summary>
         public bool isSubtypeCompatible { get; }
+
+        /// <summary>
+        /// Overrides the priority of this converter.<br/>
+        /// If the value is 0, the priority according to the inheritance hierarchy is used.
+        /// <br/><br/>
+        /// 이 컨버터의 우선순위를 재정의 합니다.<br/>
+        /// 값이 0이면 상속 계층 구조에 따른 우선순위가 사용됩니다.
+        /// </summary>
+        public int priority { get; set; } = 0;
     }
 }
 #endif

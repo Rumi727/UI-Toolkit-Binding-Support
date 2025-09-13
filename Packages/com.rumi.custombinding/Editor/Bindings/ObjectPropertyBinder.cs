@@ -14,7 +14,7 @@ namespace Rumi.CustomBinding.Editor.Bindings
     /// <see cref="object"/> 타입의 속성을 처리하는 <see cref="PropertyBinder"/>의 구체적인 구현입니다.
     /// <br/>이 바인더는 읽기 및 쓰기에 <see cref="SerializedProperty.boxedValue"/>를 사용합니다.
     /// </summary>
-    [CustomPropertyBinder(typeof(object), true)]
+    [CustomPropertyBinder(typeof(object), true, priority = int.MinValue)]
     public class ObjectPropertyBinder : PropertyBinder
     {
         /// <summary>
